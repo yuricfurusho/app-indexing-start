@@ -35,6 +35,8 @@
         </provider>
     </application>
 </manifest>
+<!--Step 6. Run the Sample App -->
+<!--DONE-->
 <!-- Step 5. Add the App Indexing API-->
 <!--DONE-->
 <!-- Step 4. Create a New Project in Firebase Console-->
