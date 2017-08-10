@@ -57,6 +57,8 @@
         </service>
     </application>
 </manifest>
+<!--Step 13. Test Your Implementation -->
+<!--DONE-->
 <!--Step 12. Log User Actions on Personal Content -->
 <!--DONE-->
 <!--Step 11. Log User Actions on Public Content -->
