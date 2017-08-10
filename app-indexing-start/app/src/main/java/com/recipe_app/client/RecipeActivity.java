@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -241,7 +242,7 @@ public class RecipeActivity extends Activity {
                 mRecipe.setNote(note);
                 ((ToggleButton) findViewById(R.id.addNoteToggle)).setChecked(true);
                 // TODO(developer): Remember to uncomment this when indexNote is available
-                // indexNote();
+                 indexNote();
             }
         });
 
@@ -267,6 +268,31 @@ public class RecipeActivity extends Activity {
             }
         });
         addNoteDialog.show();
+    }
+
+    private void indexNote() {
+        Note note = mRecipe.getNote();
+        Indexable noteToIndex = Indexables.noteDigitalDocumentBuilder()
+                .setName(mRecipe.getTitle() + " Note")
+                .setText(note.getText())
+                .setUrl(mRecipe.getNoteUrl())
+                .build();
+
+        Task<Void> task = FirebaseAppIndex.getInstance().update(noteToIndex);
+        task.addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(TAG, "App Indexing API: Successfully added note to index");
+            }
+        });
+
+        task.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.e(TAG, "App Indexing API: Failed to add note to index. " + exception
+                        .getMessage());
+            }
+        });
     }
 
     /**

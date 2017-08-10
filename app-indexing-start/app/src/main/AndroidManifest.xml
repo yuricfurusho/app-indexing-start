@@ -57,6 +57,8 @@
         </service>
     </application>
 </manifest>
+<!--Step 9. Update the On-device Index -->
+<!--DONE-->
 <!--Step 8. Write Personal Content to On-device Index -->
 <!--DONE-->
 <!--Step 7. Support Links For Your App Content -->
