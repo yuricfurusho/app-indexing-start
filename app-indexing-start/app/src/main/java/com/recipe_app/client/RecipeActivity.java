@@ -95,12 +95,35 @@ public class RecipeActivity extends Activity {
     @Override
     public void onStart() {
         super.onStart();
+        if (mRecipe != null) {
+            indexRecipe();
+            FirebaseUserActions.getInstance().start(getRecipeViewAction());
+        }
     }
 
     @Override
     public void onStop() {
+        if (mRecipe != null) {
+            FirebaseUserActions.getInstance().end(getRecipeViewAction());
+        }
         super.onStop();
     }
+
+    private void indexRecipe() {
+        Indexable recipeToIndex = new Indexable.Builder()
+                .setName(mRecipe.getTitle())
+                .setUrl(mRecipe.getRecipeUrl())
+                .setImage(mRecipe.getPhoto())
+                .setDescription(mRecipe.getDescription())
+                .build();
+
+        FirebaseAppIndex.getInstance().update(recipeToIndex);
+    }
+
+    private Action getRecipeViewAction() {
+        return Actions.newView(mRecipe.getTitle(),mRecipe.getRecipeUrl());
+    }
+
 
     protected void onNewIntent(Intent intent) {
         String action = intent.getAction();
