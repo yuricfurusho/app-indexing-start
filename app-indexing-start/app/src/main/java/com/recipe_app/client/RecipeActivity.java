@@ -291,6 +291,14 @@ public class RecipeActivity extends Activity {
             }
         });
         addNoteDialog.show();
+        FirebaseUserActions.getInstance().start(getNoteCommentAction());
+    }
+
+    private Action getNoteCommentAction() {
+        return new Action.Builder(Action.Builder.COMMENT_ACTION)
+                .setObject(mRecipe.getTitle() + " Note", mRecipe.getNoteUrl())
+                .setMetadata(new Action.Metadata.Builder().setUpload(false))
+                .build();
     }
 
     private void indexNote() {
