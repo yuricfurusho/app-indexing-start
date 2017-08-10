@@ -259,8 +259,8 @@ public class RecipeActivity extends Activity {
                     ((ToggleButton) findViewById(R.id.addNoteToggle)).setChecked(false);
 
                     // Deletes or removes the corresponding notes from index.
-                    String noteUrl = mRecipe.getNoteUrl();
-                    FirebaseAppIndex.getInstance().remove(noteUrl);
+                    String noteUrl = mRecipe.getNoteUrl(); // OK
+                    FirebaseAppIndex.getInstance().remove(noteUrl); // OK
                 } else {
                     dialog.dismiss();
                     ((ToggleButton) findViewById(R.id.addNoteToggle)).setChecked(mRecipe.getNote() != null);
