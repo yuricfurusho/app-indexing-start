@@ -27,6 +27,19 @@
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.Holo.NoActionBar">
+            <intent-filter
+                android:autoVerify="true"
+                android:label="@string/app_name">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://recipe-app.com/recipe" -->
+                <data
+                    android:host="recipe-app.com"
+                    android:pathPrefix="/recipe"
+                    android:scheme="http" />
+            </intent-filter>
         </activity>
 
         <provider
@@ -35,6 +48,8 @@
         </provider>
     </application>
 </manifest>
+<!--Step 7. Support Links For Your App Content -->
+<!--DONE-->
 <!--Step 6. Run the Sample App -->
 <!--DONE-->
 <!-- Step 5. Add the App Indexing API-->
