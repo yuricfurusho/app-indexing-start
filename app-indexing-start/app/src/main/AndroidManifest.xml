@@ -46,8 +46,19 @@
             android:name=".client.content_provider.RecipeContentProvider"
             android:authorities="com.recipe_app" >
         </provider>
+
+        <service
+            android:name=".client.AppIndexingService"
+            android:exported="true"
+            android:permission="com.google.android.gms.permission.APPINDEXING">
+            <intent-filter>
+                <action android:name="com.google.firebase.appindexing.UPDATE_INDEX" />
+            </intent-filter>
+        </service>
     </application>
 </manifest>
+<!--Step 8. Write Personal Content to On-device Index -->
+<!--DONE-->
 <!--Step 7. Support Links For Your App Content -->
 <!--DONE-->
 <!--Step 6. Run the Sample App -->
